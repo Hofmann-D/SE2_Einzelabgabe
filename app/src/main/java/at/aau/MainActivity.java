@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     EditText tv;
     TextView tv2;
     Button btn1;
+    static String answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         tv = findViewById(R.id.matrikelnummer);
         tv2 = findViewById(R.id.labelServerMessage);
         btn1 = findViewById(R.id.btn);
+
 
     }
 }
