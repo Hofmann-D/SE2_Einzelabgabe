@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     EditText tv;
     TextView tv2;
     Button btn1;
+    Button btn2;
     static String answer;
 
     @Override
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         tv = findViewById(R.id.matrikelnummer);
         tv2 = findViewById(R.id.labelServerMessage);
         btn1 = findViewById(R.id.btn);
+        btn2 = findViewById(R.id.btn2);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 //....................................................
                 //wait till method is finished.
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -40,9 +42,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number = tv.getText().toString();
+                int result = multiply(number);
+                tv2.setText("" + result);
+            }
+        });
+
     }
 
-    public void send(View v){
+    private int multiply(String number) {
+        //01655954
+
+        int result = 1;
+        for (int i = 0; i < number.length(); i++) {
+            int temp = Integer.parseInt(number.substring(i, (i + 1)));
+            if (i != 0) {
+                //ignore leading 0
+                if (temp % 2 == 0) {
+                    System.out.println("Even Number: " + temp);
+                    result *= temp;
+                }
+            }
+        }
+        return result;
+    }
+
+    public void send(View v) {
         ConnectionSocket connectionSocket = new ConnectionSocket();
         connectionSocket.execute(tv.getText().toString());
     }
