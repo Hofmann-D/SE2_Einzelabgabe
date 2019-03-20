@@ -24,6 +24,21 @@ public class MainActivity extends AppCompatActivity {
         tv2 = findViewById(R.id.labelServerMessage);
         btn1 = findViewById(R.id.btn);
 
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send(v);
+                //....................................................
+                //wait till method is finished.
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //....................................................
+                tv2.setText(answer);
+            }
+        });
 
     }
 
